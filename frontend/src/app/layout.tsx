@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Lucky Beetle",
+  icons: {
+    icon: "/lucky-beetle-logo.png",
+  },
 };
 
 export default function RootLayout({

@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { pageUrl } from "@/data/beetle-data";
 import { SquareArrowOutUpLeft } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -27,14 +28,10 @@ export const TopNav = () => {
             width={50}
             height={50}
           />
-          <h1 className="text-2xl font-bold">Lucky Beetle</h1>
+          <p className="text-2xl font-bold">Lucky Beetle</p>
         </section>
-        <a
-          href="https://www.facebook.com/profile.php?id=61582723150489"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Button className="cursor-pointer">
+        <a href={pageUrl} target="_blank" rel="noopener noreferrer">
+          <Button>
             <SquareArrowOutUpLeft />
             ไปที่หน้า Facebook
           </Button>
