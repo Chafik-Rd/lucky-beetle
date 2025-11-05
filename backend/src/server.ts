@@ -1,11 +1,15 @@
 import express from "express";
 import helmet from "helmet";
 import cors from "cors";
+import dotenv from "dotenv";
 
 import { centralizedError } from "./middleware/centralizedError";
 import { connectToMongoDB } from "./config/mongo";
 import { HttpError } from "./types/types";
 import apiRoutes from "./router/router";
+
+// Load environment variables from .env file
+dotenv.config();
 
 const app = express();
 
