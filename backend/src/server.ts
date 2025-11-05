@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 import { centralizedError } from "./middleware/centralizedError";
 import { connectToMongoDB } from "./config/mongo";
 import { HttpError } from "./types/types";
-import apiRoutes from "./router/router";
+import apiRoutes from "./api/router/router";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -35,7 +35,7 @@ app.use(cors(corsOption));
 app.use(express.json());
 
 // API Routes
-app.use(apiRoutes);
+app.use("/api", apiRoutes);
 
 // 404 Not Found Middleware
 app.use((req, res, next) => {
