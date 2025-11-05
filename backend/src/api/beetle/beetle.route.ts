@@ -1,8 +1,8 @@
 import express, { Router } from "express";
-import { getBeetles } from "../controllers/beetle";
+import { getBeetles } from "./beetle.controller";
 
 const router: Router = express.Router();
 
-router.get("/",getBeetles);
+router.get("/", getBeetles);
 
 export default router;

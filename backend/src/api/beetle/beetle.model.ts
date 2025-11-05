@@ -26,4 +26,4 @@ const BeetleSchema = new Schema(
   }
 );
 
-export const Beetle = model("Beetle", BeetleSchema);
+export const BeetleModel = model("Beetle", BeetleSchema);
