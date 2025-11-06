@@ -3,6 +3,6 @@ import beetleRouter from "../beetle/beetle.route";
 
 const router: Router = express.Router();
 
-router.use("/beetles", beetleRouter);
+router.use("/beetle", beetleRouter);
 
 export default router;

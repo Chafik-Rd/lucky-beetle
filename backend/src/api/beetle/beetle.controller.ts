@@ -41,10 +41,10 @@ export const createBeetle = async (
   try {
     const beetle = await BeetleModel.findOne({ name });
 
-    if (name) {
+    if (beetle) {
       const error: HttpError = new Error("Beetle name already");
       error.status = 409;
-      next(error);
+      return next(error);
     }
 
     const newBeetle = await BeetleModel.create({

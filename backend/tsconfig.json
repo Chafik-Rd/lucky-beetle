@@ -20,8 +20,10 @@
     "skipLibCheck": true,
 
     "outDir": "dist",
-    "rootDir": "src"
+    "rootDir": "src",
+
+    "types": ["vitest/globals"]
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "test/**/*"],
   "exclude": ["node_modules"]
 }
