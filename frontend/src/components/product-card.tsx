@@ -9,12 +9,8 @@ import {
 } from "./ui/card";
 import { Button } from "./ui/button";
 import { MessageSquare, SquareArrowOutUpRight } from "lucide-react";
-import { Beetle } from "@/types/beetle";
+import { ProductCardProps } from "@/types/beetle";
 import { pageUrl } from "@/data/beetle-data";
-
-interface ProductCardProps {
-  dataBeetle: Beetle;
-}
 
 export const ProductCard = ({ dataBeetle }: ProductCardProps) => {
   return (
