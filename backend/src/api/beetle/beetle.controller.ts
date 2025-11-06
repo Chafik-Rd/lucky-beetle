@@ -86,3 +86,55 @@ export const getBeetles = async (
     next(err);
   }
 };
+
+// Update beetle by id
+export const updateBeetle = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { beetleId } = req.params;
+  const {
+    name,
+    scientificName,
+    description,
+    imageUrl,
+    price,
+    stock,
+    origin,
+    rarity,
+    size,
+    details,
+  } = req.body;
+
+  try {
+    const beetle = await BeetleModel.findOne({ _id: beetleId });
+
+    if (!beetle) {
+      const error: HttpError = new Error("Beetle not found!");
+      error.status = 404;
+      return next(error);
+    }
+
+    if (name !== undefined) beetle.name = name;
+    if (scientificName !== undefined) beetle.scientificName = scientificName;
+    if (description !== undefined) beetle.description = description;
+    if (imageUrl !== undefined) beetle.imageUrl = imageUrl;
+    if (price !== undefined) beetle.price = price;
+    if (stock !== undefined) beetle.stock = stock;
+    if (origin !== undefined) beetle.origin = origin;
+    if (rarity !== undefined) beetle.rarity = rarity;
+    if (size !== undefined) beetle.size = size;
+    if (details !== undefined) beetle.details = details;
+
+    await beetle.save();
+
+    res.status(200).json({
+      success: true,
+      data: beetle,
+      message: "Beetle updated successfully!",
+    });
+  } catch (err) {
+    next(err);
+  }
+};

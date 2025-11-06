@@ -52,7 +52,7 @@ describe("🐛 /api/beetle Integration Tests", () => {
   });
 
   // --- 2. Test GET /api/beetles (getBeetles) ---
-  describe("GET /api/beetles (Get All Beetles)", () => {
+  describe("GET /api/beetle (Get All Beetles)", () => {
     test("2.1. Should return 200 and an array of beetles when data exists", async () => {
       // สร้างข้อมูลตั้งต้น 2 ชิ้น
       await BeetleModel.create(mockBeetleData);
@@ -77,6 +77,39 @@ describe("🐛 /api/beetle Integration Tests", () => {
       expect(response.statusCode).toBe(200);
       expect(response.body.success).toBe(true);
       expect(response.body.data).toEqual([]);
+    });
+  });
+
+  describe("PUT /api/beetleซรก (Update Beetle)", () => {
+    test("3.1 Should update beetle by id and return 200", async () => {
+      const beetle = await BeetleModel.create(mockBeetleData);
+
+      const updateData = { name: "Updated name" };
+
+      const response = await request
+        .put(`/api/beetle/${beetle._id}`)
+        .send(updateData);
+
+      expect(response.statusCode).toBe(200);
+      expect(response.body.success).toBe(true);
+      expect(response.body.data.name).toBe("Updated name");
+
+      const updated = await BeetleModel.findById(beetle._id);
+      expect(updated?.name).toBe("Updated name");
+    });
+
+    test("3.2 Should return 404 if beetle id not found in database", async () => {
+      await BeetleModel.create(mockBeetleData);
+
+      const updateData = { name: "Updated name" };
+
+      const response = await request
+        .put(`/api/beetle/${"68aedd07efdf964e2de1ec59"}`)
+        .send(updateData);
+
+      expect(response.statusCode).toBe(404);
+      expect(response.body.success).toBe(false);
+      expect(response.body.message).toBe("Beetle not found!");
     });
   });
 });
